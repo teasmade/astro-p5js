@@ -1,0 +1,42 @@
+---
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>P5 Sketch</title>
+	</head>
+	<body>
+		<h1>P5 Sketch</h1>
+    <div id="sketch"></div>
+	</body>
+</html>
+
+<script>
+  import p5 from 'p5';
+
+  const sketch = (p: p5) => {
+    p.setup = () => {
+      p.createCanvas(400, 400);
+      p.background(220);
+    };
+    
+    p.draw = () => {
+      if (p.mouseIsPressed) {
+        p.fill(0);
+      } else {
+        p.fill(255);
+      }
+      p.ellipse(p.mouseX, p.mouseY, 80, 80);
+    };
+  };
+  
+  const p5WrapperElement = document.getElementById('sketch');
+  if (p5WrapperElement) {
+    new p5(sketch, p5WrapperElement);
+  }
+</script>
