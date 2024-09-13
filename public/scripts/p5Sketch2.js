@@ -1,19 +1,33 @@
 // p5js sketch for a checkerboard pattern
+let gridMod = 0;
+let speed = 1;
+
 function setup() {
-  createCanvas(400, 400);
+  const canvas = createCanvas(400, 400);
+  canvas.parent('p5div')
   background(220);
-  noLoop();
+  // noLoop();
 }
 
 function draw() {
-  let w = width / 8;
-  let h = height / 8;
-  for (let i = 0; i < 8; i++) {
-    for (let j = 0; j < 8; j++) {
-      if ((i + j) % 2 == 0) {
-        fill(255);
+  
+  const gridSize = 128;
+
+  if (gridMod >= gridSize / 8) {
+    speed = -1;
+  } else if (gridMod <= 0) {
+    speed = 1;
+  }
+  gridMod += speed;
+
+  let w = width / gridSize;
+  let h = height / gridSize;
+  for (let i = 0; i < gridSize; i+=1) {
+    for (let j = 0; j < gridSize; j+=1) {
+      if ((i + j) % gridMod == 0) {
+        fill(color(255, 0, 0));
       } else {
-        fill(0);
+        fill(color(0, 0, 255));
       }
       rect(i * w, j * h, w, h);
     }

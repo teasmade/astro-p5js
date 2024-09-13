@@ -3,6 +3,8 @@ const {scriptName } = Astro.props;
 
 ---
 
-<script is:inline src="../../lib/p5.min.js"></script>
+<div id="p5div"/>
 
-<script is:inline src={`../../scripts/${scriptName}.js`}></script>
+<script is:inline src="/lib/p5.min.js"></script>
+
+<script is:inline src={`/scripts/${scriptName}.js`}></script>
